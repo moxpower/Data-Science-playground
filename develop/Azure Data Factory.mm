@@ -19,21 +19,48 @@
 </node>
 </node>
 <node CREATED="1467122300916" ID="ID_1324030307" MODIFIED="1467293924334" POSITION="left" TEXT="ADF Process">
-<node CREATED="1467293808718" ID="ID_602643326" MODIFIED="1467293817851" TEXT="Linked Service (SQL, Hadoop Cluster)"/>
-<node CREATED="1467293818336" ID="ID_1195500521" MODIFIED="1467293828569" TEXT="Data Set (table, file)"/>
-<node CREATED="1467293828816" ID="ID_1992217590" MODIFIED="1467293850403" TEXT="Activity (hive, pig)"/>
-<node CREATED="1467293850673" ID="ID_776420594" MODIFIED="1467293866687" TEXT="Pipeline (schedule, monitor)"/>
+<node CREATED="1467293808718" ID="ID_602643326" MODIFIED="1467296620855" TEXT="Linked Service (SQL, Hadoop Cluster, Azure Blob Storage, Azure Data Lake Store)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1467293818336" ID="ID_1195500521" MODIFIED="1467296650280" TEXT="Dataset (table, file, Azure Blob Storage(?), Azure Data Lake Store)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1467293828816" ID="ID_1992217590" MODIFIED="1467295514788" TEXT="Activity (hive, pig)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1467293850673" ID="ID_776420594" MODIFIED="1467295514787" TEXT="Pipeline (schedule, monitor)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
 <node CREATED="1467293934123" ID="ID_1419816131" MODIFIED="1467293952463" TEXT="process">
-<node CREATED="1467293940051" MODIFIED="1467293940051">
+<node CREATED="1467293940051" ID="ID_1639589519" MODIFIED="1467296414067">
 <richcontent TYPE="NODE"><html>
   <head>
     
   </head>
   <body>
-    <img src="Azure Data Factory_2027020027689458971.jpeg" />
+    <p>
+      <img src="Azure Data Factory_2027020027689458971.jpeg" width="700" height="150/" />
+    </p>
   </body>
 </html>
 </richcontent>
+</node>
+</node>
+<node CREATED="1467296121345" ID="ID_1097263535" MODIFIED="1467296125247" TEXT="components">
+<node CREATED="1467296125248" ID="ID_356431627" MODIFIED="1467296125248" TEXT="">
+<node CREATED="1467296145193" ID="ID_716767295" MODIFIED="1467296384788">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <img src="Azure Data Factory_4980692283835697926.jpeg" width="400" height="150" />
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 </node>
 </node>
 </node>
