@@ -16,7 +16,7 @@ import os
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-get_ipython().magic('matplotlib inline')
+#%matplotlib inline
 from sklearn.cross_validation import train_test_split
 import xgboost as xgb
 import operator
@@ -35,8 +35,14 @@ client = pd.read_csv(os.path.join(dir_raw,"cliente_tabla.csv"))
 
 # In[ ]:
 
-print("Reading in train and test data...")
+print("Reading test data...")
 test = pd.read_csv(os.path.join(dir_raw,"test.csv"))
+print("Done")
+
+
+# In[ ]:
+
+print("Reading train data...")
 train = pd.read_csv(os.path.join(dir_raw,"train.csv"))
 print("Done")
 
@@ -434,4 +440,9 @@ train["Demanda_uni_equil"]=6
 # In[87]:
 
 train.to_csv(os.path.join(dir_sub, "submission_2.csv"), index=False)
+
+
+# In[ ]:
+
+#jupyter nbconvert --to python "Bimbo Bread Py.ipynb"
 
