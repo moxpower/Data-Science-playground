@@ -10,6 +10,8 @@
 
 # In[1]:
 
+#jupyter nbconvert --to python "Bimbo Bread Py.ipynb"
+
 import pandas as pd
 import numpy as np
 import os
@@ -43,8 +45,16 @@ print("Done")
 # In[ ]:
 
 print("Reading train data...")
-train = pd.read_csv(os.path.join(dir_raw,"train.csv"))
+train_1 = pd.read_csv(os.path.join(dir_raw,"train/xaa"))
+print("first batch finished")
+train_2 = pd.read_csv(os.path.join(dir_raw,"train/xab"))
+print("second batch finished")
 print("Done")
+
+
+# In[ ]:
+
+train = pd.concat([train_1,train_2])
 
 
 # ### Features
@@ -444,5 +454,5 @@ train.to_csv(os.path.join(dir_sub, "submission_2.csv"), index=False)
 
 # In[ ]:
 
-#jupyter nbconvert --to python "Bimbo Bread Py.ipynb"
+
 
