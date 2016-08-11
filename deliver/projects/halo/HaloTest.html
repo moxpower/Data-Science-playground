@@ -1,0 +1,173 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vizuly - Halo</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Raleway:600,400,200' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="styles/examples.css">
+    <link rel="stylesheet" href="../lib/styles/vizuly.css">
+    <link rel="stylesheet" href="../lib/styles/vizuly_halo.css">
+
+    <!-- Test Index Files -->
+    <!-- Supporting test container files:  Vizuly does NOT rely on these -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../lib/styles/cssmenu.css">
+    <script type="text/javascript" src="../lib/jquery-2.1.1.min.js"></script>
+    <script src="../lib/cssmenu.js"></script>
+
+    <!-- D3.js ... of course! -->
+    <script src="lib/d3.min.js"></script>
+
+    <!-- debug source scripts: start -->
+    <!--
+    <script src="../src/namespace/namespace.js"></script>
+
+    <script src="../src/theme/_theme.js"></script>
+    <script src="../src/theme/halo.js"></script>
+
+    <script src="../src/core/component.js"></script>
+    <script src="../src/core/util.js"></script>
+    <script src="../src/core/color.js"></script>
+    <script src="../src/core/format.js"></script>
+    <script src="../src/svg/_svg.js"></script>
+    <script src="../src/svg/gradient.js"></script>
+    <script src="../src/svg/filter.js"></script>
+    <script src="../src/viz/_viz.js"></script>
+    <script src="../src/viz/halo.js"></script>
+
+    -->
+    <!-- debug source scripts: end -->
+    <!-- store.js -->
+
+    <script src="lib/vizuly_site.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+    if (self == top) {
+      (function (i, s, o, g, r, a, m) {
+         i['GoogleAnalyticsObject'] = r;
+         i[r] = i[r] || function () {
+         (i[r].q = i[r].q || []).push(arguments)
+         }, i[r].l = 1 * new Date();
+         a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+         a.async = 1;
+         a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+       ga('create', 'UA-73241722-1', 'auto');
+       ga('send', 'pageview');
+      }
+    });
+    </script>
+    <script src="lib/theme_showreel.js"></script>
+
+</head>
+
+<body>
+
+    <div id='cssmenu'>
+        <ul class="main-menu">
+            <li class='active'>
+                <a><span>Display</span><br><span class="setting"></span></a>
+                <ul class="options" callback="changeSize">
+                    <li id="currentDisplay" class="selected"><a></a></li>
+                    <li item_value="1000,1000"><a>1000px - 1000px</a></li>
+                    <li item_value="800,600"><a>800px - 600px</a></li>
+                    <li item_value="375,667"><a>375px - 667px</a></li>
+                    <li item_value="320,568"><a>320px - 568px</a></li>
+                </ul>
+            </li>
+            <li class='active'>
+                <a><span>Theme </span><br><span class="setting"></span></a>
+                <ul class="options" callback="changeSkin">
+                    <li item_value="custom" class="selected"><a>Political Influence</a></li>
+                    <li item_value="Fire"><a>Fire</a></li>
+                    <li item_value="Sunset"><a>Sunset</a></li>
+                    <li item_value="Neon"><a>Neon</a></li>
+                    <li item_value="Ocean"><a>Ocean</a></li>
+                </ul>
+            </li>
+            <li class='active'>
+                <a><span>House&nbsp;or&nbsp;Sentate</span><br><span class="setting"></span></a>
+                <ul class="options" callback="changeData">
+                    <li item_value="house" class="selected"><a>House</a></li>
+                    <li item_value="senate"><a>Senate</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+    <div class="container" style="width:100%">
+        <div id="viz_container" class="z-depth-3"></div>
+        <div style="margin-left:0px; height:0px; width:90%; margin:0px auto; margin-top:20px; font-family:Raleway; font-size:14px;">
+            This data looks at the monetary contributions made by the top 20 Political Action Committees (PAC) for the 2012
+            congressional election cycle, both for the House of Representatives and the Senate.
+            <br><br>
+            Each inner circle represents a member of congress, blue is democrat, red is republican, and gold is independent.
+            The larger the circle, the more funds that member has received.
+            Each arc along the circumference is one of the top 20 PAC’s.
+            Each section of the arc and corresponding chord that connects to a member’s circle
+            represents a specific donation on a given date.
+            <br><br>
+            Created By:  <a href="http://www.brightpointinc.com">BrightPoint Consulting, Inc.</a>
+            <br>
+            Data Source: www.fec.gov
+        </div>
+    </div>
+
+
+    <script>
+    //Once the document is ready we set javascript and page settings
+    var screenWidth;
+    var screenHeight;
+
+    $(document).ready(function () {
+
+        var rect;
+        if (self==top) {
+            rect = document.body.getBoundingClientRect();
+        }
+        else {
+            rect =  parent.document.body.getBoundingClientRect();
+        }
+
+        //Set display size based on window size.
+        screenWidth = (rect.width < 960) ? Math.round(rect.width*.95) : Math.round((rect.width - 210) *.95)
+        screenHeight = Math.min(parent.innerHeight * 0.75, screenWidth);
+        screenWidth = screenHeight;
+
+        d3.select("#currentDisplay")
+                .attr("item_value", screenWidth + "," + screenHeight)
+                .attr("class", "selected")
+                .html("<a>" + screenWidth + "px - " + screenHeight + "px</a>");
+
+
+        $("#cssmenu").menumaker({
+            title: "VIZULY HALO",
+            format: "multitoggle"
+        });
+
+        // Set the size of our container element.
+        viz_container = d3.selectAll("#viz_container")
+                .style("width", screenWidth + "px")
+                .style("height", screenHeight + "px");
+
+        loadData();
+
+
+    });
+
+    </script>
+
+</body>
+
+
+</html>
