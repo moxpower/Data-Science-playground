@@ -87,7 +87,7 @@ path.domain {
     border: 1px solid #AAA;
     fill:#FFF;
     padding:10px;
-    font-face:Raleway; text-transform:uppercase; font-weight:200; color:#000;
+    font-face:Raleway; text-transform:lowercase; font-weight:200; color:#000;
 }
 
 .vz-material-datatip {
@@ -96,7 +96,7 @@ path.domain {
     border: 1px solid #AAA;
     fill:#FFF;
     padding:10px;
-    font-face:Raleway; text-transform:uppercase; font-weight:200; color:#FFF;
+    font-face:Raleway; text-transform:lowercase; font-weight:200; color:#FFF;
 }
 
 .vz-neon-datatip {
@@ -104,7 +104,7 @@ path.domain {
     border-radius:3px;
     border: 1px solid #777;
     padding:10px;
-    font-face:Raleway; text-transform:uppercase; font-weight:200; color:#FFF;
+    font-face:Raleway; text-transform:lowercase; font-weight:200; color:#FFF;
 }
 
 .vz-minimal-datatip {
@@ -113,12 +113,12 @@ path.domain {
     border: 1px solid #333;
     padding:10px;
     font-face:Raleway;
-    text-transform:uppercase;
+    text-transform:lowercase;
     color:#333;
 }
 
 .vz-minimal-datatip span {
-    font-weight:300!important;
+    font-weight:800!important;
 }
 
 .vz-viz circle {

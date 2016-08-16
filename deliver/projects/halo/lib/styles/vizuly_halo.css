@@ -37,6 +37,7 @@
 
 .vz-halo-label {
     font-family:Arial,Helvetica;
+    /*text-transform:lowercase;*/
 }
 
 .vz-halo-label rect {
