@@ -1,6 +1,6 @@
 ﻿
 <!DOCTYPE html>
-<html>
+<html xmlns:xlink="http://www.w3.org/1999/xlink">
 <head>
     <meta charset="utf-8">
     <title>Vizuly - Halo</title>
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles/examples.css">
     <link rel="stylesheet" href="../lib/styles/vizuly.css">
     <link rel="stylesheet" href="../lib/styles/vizuly_halo.css">
-
+    
     <!-- Test Index Files -->
     <!-- Supporting test container files:  Vizuly does NOT rely on these -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -42,27 +42,27 @@
     -->
     <!-- debug source scripts: end -->
     <!-- store.js -->
-    
+
     <script src="lib/vizuly_site.min.js"></script>
 
     <script>
-    $(document).ready(function () {
-    if (self == top) {
-      (function (i, s, o, g, r, a, m) {
-         i['GoogleAnalyticsObject'] = r;
-         i[r] = i[r] || function () {
-         (i[r].q = i[r].q || []).push(arguments)
-         }, i[r].l = 1 * new Date();
-         a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-         a.async = 1;
-         a.src = g;
-        m.parentNode.insertBefore(a, m)
-      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-       ga('create', 'UA-73241722-1', 'auto');
-       ga('send', 'pageview');
-      }
-    });
+        $(document).ready(function () {
+            if (self == top) {
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                       m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-73241722-1', 'auto');
+                ga('send', 'pageview');
+            }
+        });
     </script>
     <script src="lib/theme_showreel.js"></script>
 
