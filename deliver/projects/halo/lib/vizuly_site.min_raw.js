@@ -1,4 +1,4 @@
-/*! vizuly 28-04-2016 local */
+/*! vizuly 28-04-2016 */
 
 function loadData() {
     d3.csv("data/halo_contributions_projects.csv", function (a) {
@@ -7,7 +7,7 @@ function loadData() {
         })
     })
 } function initialize() {
-    viz = vizuly.viz.halo_cluster("div#viz_container"),
+    viz = vizuly.viz.halo_cluster(document.getElementById("viz_container")),
     viz.data(data).width(800).height(600).haloKey(function (a) {
         return a.PROJ_HALO_ID
     }).nodeKey(function (a) {
@@ -25,35 +25,12 @@ function loadData() {
         .on("linkout", onMouseOut),
     theme = vizuly.theme.halo(viz),
     theme.skins().custom = customSkin,
-    theme.skin("Ocean"),
+    theme.skin("custom"),
     /* title */
     viz_title = viz.selection().select("svg").append("text")
         .attr("class", "title").style("font-family", "Raleway")
-        .attr("x", viz.width() / 2).attr("y", 40).attr("text-anchor", "middle").style("font-weight", 300).text(""),
-    item_value = "100,100",
-    changeSize(1000, 1000)/*d3.select("#currentDisplay").attr("item_value"))*/;
-    /*
-    d3.selectAll('g.node')  //here's how you get all the nodes
-    .each(function(d) {
-        // your update code here as it was in your example
-        d3.select(this) // Transform to d3 Object
-        ... 
-        });
-
-    var d = viz.selection().selectAll(".vz-halo-arc-plot").append("g").attr("class", "vz-halo-label").style("pointer-events", "none").style("opacity", 0);
-    d.append("text").style("font-size", "11px").style("fill", theme.skin().labelColor).style("fill-opacity", .75).attr("text-anchor", "middle").attr("x", a).attr("y", b).text(c);
-    var e = d[0][0].getBoundingClientRect(); d.insert("rect", "text").style("shape-rendering", "auto").style("fill", theme.skin().labelFill).style("opacity", .45).attr("width", e.width + 12).attr("height", e.height + 12).attr("rx", 3).attr("ry", 3).attr("x", a - 5 - e.width / 2).attr("y", b - e.height - 3), d.transition().style("opacity", 1)
-    */
-    createAllPaclabels();
-    
-
-} function createAllPaclabels() {
-    var d = {},
-        e = viz.selection().selectAll(".vz-halo-link-path");
-    e.each(function (a) {
-        var b = viz.selection().selectAll(".vz-halo-arc");
-        b.each(function (a) { d[a.data.key] || (d[a.data.key] = 1, createPacLabelAlternativeLabel(a.x + a.x / Math.abs(a.x) * 50 * Math.cos(Math.atan(a.y / a.x)), a.y + a.x / Math.abs(a.x) * 50 * Math.sin(Math.atan(a.y / a.x)), a.data.values[0].LANGUAGE)) })
-    })
+        .attr("x", viz.width() / 2).attr("y", 40).attr("text-anchor", "middle").style("font-weight", 300).text("Programming languages progress by project"),
+    changeSize(d3.select("#currentDisplay").attr("item_value"))
 } function onUpdate() {
     viz_title.style("fill", theme.skin() != customSkin ? theme.skin().labelColor : "#000")
 } function node_onMouseOver(a, b, c) {
@@ -67,14 +44,14 @@ function loadData() {
             h = viz.selection().selectAll(".vz-halo-node.node-key_" + b.key),
             g = h[0][0].getBoundingClientRect(),
             i = g.left,
-            j = g.top;// + document.body.scrollTop;
+            j = g.top + document.body.scrollTop;
         /*l = {},
         k = viz.selection().selectAll(".vz-halo-link-path.node-key_" + b.key);
         k.each(function (a,i,j) {
             var i = viz.selection().selectAll(".vz-halo-node.halo-key_" + viz.haloKey()(b.data));
             i.each(function (a) { l[a.data.key] || (l[a.data.key] = 1, createDataTip(i + b.r, j + b.r + 25, a.data.values[0].LANGUAGE, a.data.values[0].LANGUAGE, "Total Received: ")) })
         })*/
-        createDataTip(i + b.r, j + b.r + window.scrollY, b.values[0].CPNY, b.values[0].PROJ_NAME, "Total Received: ")
+        createDataTip(i + b.r, j + b.r + 25, b.values[0].CPNY, b.values[0].PROJ_NAME, "Total Received: ")
 } function arc_onMouseOver(a, b, c) {
     var d = viz.selection().selectAll(".vz-halo-link-path.halo-key_" + b.data.key),
         e = 0; d.each(function (a) { e += viz.value()(a.data) }),
@@ -96,25 +73,20 @@ function loadData() {
     var f = datatip.replace("HEADER1", c);
     f = f.replace("HEADER2", d),
     f = f.replace("HEADER3", e),
-    d3.select("div#viz_container").append("div").attr("class", "vz-halo-label").style("position", "absolute").style("top", b + "px").style("left", a - 125 + "px").style("opacity", 0)
+    d3.select("body").append("div").attr("class", "vz-halo-label").style("position", "absolute").style("top", b + "px").style("left", a - 125 + "px").style("opacity", 0)
         .html(f).transition().style("opacity", 1)
     /*d3.select("body").append("a").attr("xlink:href", 'http://localhost:8000/').append("svg:rect").on("click", onclick)*/
     
-} function createPacLabelAlternativeLabel(a, b, c) {
-    var d = viz.selection().selectAll(".vz-halo-arc-plot").append("g").attr("class", "vz-halo-label-alternative").style("pointer-events", "none").style("opacity", 0);
-    d.append("text").style("font-size", "11px").style("fill", theme.skin().labelColor).style("fill-opacity", .50).attr("text-anchor", "middle").attr("x", a).attr("y", b).text(c);
-    var e = d[0][0].getBoundingClientRect(); d.insert("rect", "text").style("shape-rendering", "auto").style("fill", theme.skin().labelFill).style("opacity", .25).attr("width", e.width + 12).attr("height", e.height + 12).attr("rx", 3).attr("ry", 3).attr("x", a - 5 - e.width / 2).attr("y", b - e.height - 3), d.transition().style("opacity", 1)
 } function createPacLabel(a, b, c) {
     var d = viz.selection().selectAll(".vz-halo-arc-plot").append("g").attr("class", "vz-halo-label").style("pointer-events", "none").style("opacity", 0);
     d.append("text").style("font-size", "11px").style("fill", theme.skin().labelColor).style("fill-opacity", .75).attr("text-anchor", "middle").attr("x", a).attr("y", b).text(c);
     var e = d[0][0].getBoundingClientRect(); d.insert("rect", "text").style("shape-rendering", "auto").style("fill", theme.skin().labelFill).style("opacity", .45).attr("width", e.width + 12).attr("height", e.height + 12).attr("rx", 3).attr("ry", 3).attr("x", a - 5 - e.width / 2).attr("y", b - e.height - 3), d.transition().style("opacity", 1)
 } function onMouseOut(a, b) {
-    
-    d3.selectAll(".vz-halo-label").remove();
+    d3.selectAll(".vz-halo-label").remove()
 } function changeSkin(a) {
     a && (theme.skin(a), viz.update())
 } function changeSize(a) {
-    var b = String("802.5,802.5"/*a*/).split(","); viz_container.transition().duration(300).style("width", b[0] + "px").style("height", b[1] + "px"), viz.width(Number(b[0])).height(Number(b[1])).update(), viz_title.attr("x", viz.width() / 2), theme.apply()
+    var b = String(a).split(","); viz_container.transition().duration(300).style("width", b[0] + "px").style("height", b[1] + "px"), viz.width(Number(b[0])).height(Number(b[1])).update(), viz_title.attr("x", viz.width() / 2), theme.apply()
 } function changeData(a) {
     congress = a, data = dataSource[a], viz.data(data).update()
 } var vizuly = {};

@@ -1,0 +1,59 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <!--<link rel="stylesheet" href="styles/examples.css">
+    <link rel="stylesheet" href="../lib/styles/vizuly.css">
+    <link rel="stylesheet" href="../lib/styles/vizuly_halo.css">-->
+    
+    <script type="text/javascript" src="../lib/jquery-2.1.1.min.js"></script>
+   
+    <script src="lib/d3.min.js"></script>
+        
+    
+
+    <script src="lib/vizuly_site.min.js"></script>
+
+<!--    <script type="text/javascript" src="https://raw.githubusercontent.com/moxpower/moxpower.github.io/master/_includes/lib/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="https://raw.githubusercontent.com/moxpower/moxpower.github.io/master/_includes/lib/d3.min.js"></script>
+<script type="text/javascript" src="https://raw.githubusercontent.com/moxpower/moxpower.github.io/master/_includes/lib/vizuly_site.min.js"></script>-->
+
+</head>
+
+<body>
+    <!--<div class="container" style="width:100%">-->
+        <div id="viz_container" class="z-depth-3"></div>
+    <!--</div>-->
+
+
+    <script>
+    
+    //var screenWidth;
+    //var screenHeight;
+    //$(document).ready(function () {
+        
+     /*   var rect;
+        if (self==top) {
+            rect = document.body.getBoundingClientRect();
+        }
+        else {
+            rect =  parent.document.body.getBoundingClientRect();
+        }*/
+        // Set the size of our container element.
+        viz_container = d3.selectAll("#viz_container")
+                .style("width", 1000)
+                .style("height", 1000);
+                
+        loadData();
+
+
+    //});
+
+    </script>
+
+</body>
+
+
+</html>
+
