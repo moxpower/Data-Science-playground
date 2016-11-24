@@ -1,2 +1,0 @@
-Create Virtual Machines with UBUNTU on host Windows
-http://www.psychocats.net/ubuntu/virtualbox
