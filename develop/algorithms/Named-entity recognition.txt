@@ -1,0 +1,13 @@
+Named entity recognition
+
+NLTK - Stanford NER
+Alchemy
+(Conditional Random Fields) [src http://homepages.inf.ed.ac.uk/csutton/publications/crftut-fnt.pdf]
+Elman/Jordan RNN/LSTMs, LSTM-CRF (Recurrent Neural Networks)
+Maximum-Entropy-Markov-Model
+CRF/HMM
+Gate, GExp (rule engines)
+Lingpipe
+TFIDF (unsupervised)
+Naive Bayes/SVM (supervised)
+RNNs https://www.quora.com/What-is-the-best-algorithm-for-named-entity-recognition
